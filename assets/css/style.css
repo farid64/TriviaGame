@@ -1,0 +1,134 @@
+
+
+
+body {
+	background-image: url(../images/background.jpg);
+}
+
+.container {
+	width: 60vw;
+	height: 80vh;
+	background-color: black;
+	margin-top: 10vh;
+	padding: 20px;
+}
+
+.main-panel {
+	position: relative;
+	height: auto;
+	width: 90%;
+	background-color: yellow;
+	border-radius: 5px;
+	text-align: center;
+	margin-left: 5%;
+	height: auto;
+	min-height: 100px;
+	top: -100px;
+	opacity: 0;
+
+}
+
+.timer-container {
+	width: 90%;
+	margin-left: 5%;
+	text-align: center;
+	color: white;
+	opacity: 0;
+}
+
+.main-panel p {
+	margin: 30px;
+}
+
+.answer-container {
+	position: relative;
+	width: 90%;
+	/*border: 1px solid gray;*/
+	margin-left: 5%;
+	height: 200px;
+	text-align: center;
+}
+
+.gif {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	top: 0;
+
+}
+
+.gif img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.Message {
+	position: absolute;
+	color: white;
+	top: 20px;
+	left: 220px;
+}
+
+.Start-Reset {
+	position: absolute;
+	bottom: 20px;
+	left: 47%;
+}
+
+.answer0 {
+	position: relative;
+	background-color: red;
+	text-align: center;
+	width: 100%;
+	left: -100%;
+	opacity: 0;
+}
+
+.answer0:hover {
+	background-color: white;
+}
+
+
+.answer1 {
+	position: relative;
+	background-color: blue;
+	text-align: center;
+	width: 100%;
+	right: -100%;
+	opacity: 0;
+
+}
+
+.answer1:hover {
+	background-color: white;
+}
+
+.answer2 {
+	position: relative;
+	background-color: white;
+	text-align: center;
+	width: 100%;
+	left: -100%;
+	opacity: 0;
+
+}
+
+.answer2:hover {
+	background-color: white;
+}
+
+.answer3 {
+
+	position: relative;
+	background-color: pink;
+	text-align: center;
+	width: 100%;
+	right: -100%;
+	opacity: 0;
+
+}
+
+.answer3:hover {
+	background-color: white;
+}
+
