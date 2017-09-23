@@ -1,16 +1,33 @@
-//this is the Game Object
+
+//these are the global varaibles for timers
 
 var intervalId;
 var timerInt;
 var counter;
 var counterR;
 
+//this is the Game Object
+
 var myGame = {
-	Items : [],
-	currentQuestion : {},
-	correct: 0,
-	incorrect: 0,
-	answered : false,
+	Items : [], //this Array will contain all the questions from API
+	currentQuestion : {}, //this object will contain the currentQuestion
+	correct: 0, //counter for number of correct answers
+	incorrect: 0, //counter for number of incorrect answers
+	answered : false, //this bolean will used for avoiding uninteded clicks and operations
+
+	starter : function(){}, //this Method is used to create the Start button and reset the values
+	retriever : function(){}, //this Method will retrieve the data from the API and run the loader function at the begining of a new game
+	loader : function(){}, //this Method loads the question and answers to their elements and launch the In Method
+						   //and set the timer for each question
+	checkAnswer : function(){}, //this Method will check whether the answer was correct or whether the time is out
+	timerQ : function(){}, //this timer is for questions
+	timerR : function(){}, //this timer is for gif and result of each question part
+	ender : function(){}, //this Method is only for when the questions are finished and we want to show the results
+	In : function(){}, //this Method brings in the elements in
+	Out : function(){}, //this Method takes out the elements after answering or time up
+	mixUp : function(){}, //this Method is used to mix up the answers because the API gives correct answer separatly
+						  //from the incorrect answers. I wanted to avoid having it always at one place
+	fixSentence : function(){}, //This Method will fix the sentences from API. They appeared to have some problems
 }
 
 myGame.starter = function(){
@@ -60,9 +77,7 @@ myGame.loader = function(){
 	console.log(currentQuestion);
 
 	var questionText = currentQuestion.question;
-	questionText = questionText.replace(/&quot;/g , '"');
-	questionText = questionText.replace(/&amp;/g , '&');
-	questionText = questionText.replace(/&#039;/g , "'");
+	questionText = this.fixSentence(questionText);
 	$(".question").text(questionText);
 
 	var arr = currentQuestion.incorrect_answers;
@@ -80,27 +95,19 @@ myGame.loader = function(){
 	}
 
 	var ans0 = arrFinal[0];
-	ans0 = ans0.replace(/&quot;/g , '"');
-	ans0 = ans0.replace(/&amp;/g , '&');
-	ans0 = ans0.replace(/&#039;/g , "'");
+	ans0 = this.fixSentence(ans0);
 	$(".answer0 > p").text(ans0);
 
 	var ans1 = arrFinal[1];
-	ans1 = ans1.replace(/&quot;/g , '"');
-	ans1 = ans1.replace(/&amp;/g , '&');
-	ans1 = ans1.replace(/&#039;/g , "'");
+	ans1 = this.fixSentence(ans1);
 	$(".answer1 > p").text(ans1);
 
 	var ans2 = arrFinal[2];
-	ans2 = ans2.replace(/&quot;/g , '"');
-	ans2 = ans2.replace(/&amp;/g , '&');
-	ans2 = ans2.replace(/&#039;/g , "'");
+	ans2 = this.fixSentence(ans2);
 	$(".answer2 > p").text(ans2);
 
 	var ans3 = arrFinal[3];
-	ans3 = ans3.replace(/&quot;/g , '"');
-	ans3 = ans3.replace(/&amp;/g , '&');
-	ans3 = ans3.replace(/&#039;/g , "'");
+	ans3 = this.fixSentence(ans3);
 	$(".answer3 > p").text(ans3);
 
 	$(".Start-Reset").empty();
@@ -124,7 +131,6 @@ myGame.checkAnswer = function(response){
 
 		var newGif = $("<img>");
 		newGif.attr("src" , "assets/images/Trump-Correct.gif");
-		// newGif.css({max-width: "100%", max-height: "100%"});
 		$(".gif").append(newGif);
 
 		var newMessage = $("<p>");
@@ -137,7 +143,6 @@ myGame.checkAnswer = function(response){
 
 		var newGif = $("<img>");
 		newGif.attr("src" , "assets/images/Trump-Wrong.gif");
-		// newGif.css({max-width: "100%", max-height: "100%"});
 		$(".gif").append(newGif);
 
 		var newMessage = $("<p>");
@@ -151,7 +156,6 @@ myGame.checkAnswer = function(response){
 
 		var newGif = $("<img>");
 		newGif.attr("src" , "assets/images/Trump-timeUp.gif");
-		// newGif.css({max-width: "100%", max-height: "100%"});
 		$(".gif").append(newGif);
 
 		var newMessage = $("<p>");
@@ -170,7 +174,6 @@ myGame.timerQ = function(time){
 	$(".timer-container").animate({opacity: 1});
 	$(".timer").text(counter);
 
-	// clearInterval(Interval);
 	intervalId = setInterval(decrement, 1000);
 	
 	function decrement(){
@@ -253,6 +256,16 @@ myGame.mixUp = function(arr){
 	}
 
 	return Array;
+}
+
+myGame.fixSentence = function(sent){
+
+	var sentence = sent;
+	sentence = sentence.replace(/&quot;/g , '"');
+	sentence = sentence.replace(/&amp;/g , '&');
+	sentence = sentence.replace(/&#039;/g , "'");
+
+	return sentence;
 }
 
 myGame.starter();
