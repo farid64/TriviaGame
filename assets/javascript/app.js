@@ -106,7 +106,7 @@ myGame.loader = function(){
 	$(".Start-Reset").empty();
 
 	this.In();
-	this.timerQ(600);
+	this.timerQ(25);
 }
 
 myGame.checkAnswer = function(response){
@@ -157,7 +157,7 @@ myGame.checkAnswer = function(response){
 		$(".Message").append(newMessage);
 	}
 
-	this.timerR(5);
+	this.timerR(7);
 	
 
 }
