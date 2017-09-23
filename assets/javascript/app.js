@@ -106,7 +106,7 @@ myGame.loader = function(){
 	$(".Start-Reset").empty();
 
 	this.In();
-	this.timerQ(15);
+	this.timerQ(600);
 }
 
 myGame.checkAnswer = function(response){
