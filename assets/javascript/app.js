@@ -105,6 +105,8 @@ myGame.loader = function(){
 
 	$(".Start-Reset").empty();
 
+	this.answered = false;
+
 	this.In();
 	this.timerQ(25);
 }
@@ -167,7 +169,6 @@ myGame.timerQ = function(time){
 	counter = time;
 	$(".timer-container").animate({opacity: 1});
 	$(".timer").text(counter);
-	this.answered = false;
 
 	// clearInterval(Interval);
 	intervalId = setInterval(decrement, 1000);
@@ -258,10 +259,12 @@ myGame.starter();
 
 $(".answer-container").on('click' , '.answer', function(){
 
-	var response = $(this).attr("data-correct");
-	console.log(response);
-	myGame.answered = true;
-	myGame.checkAnswer(response);
+	if(myGame.answered === false){
+		var response = $(this).attr("data-correct");
+		console.log(response);
+		myGame.answered = true;
+		myGame.checkAnswer(response);
+	}
 })
 
 $(".Start-Reset").on('click' , '#startBtn' , function(){
